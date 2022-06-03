@@ -34,7 +34,31 @@ const UserSchema = new mongoose.Schema({
 	},
 });
 
+const EventSchema = mongoose.Schema({
+	title: {
+		type: String,
+		required: true,
+	},
+	date: {
+		type: Date,
+		required: true,
+	},
+	location: {
+		type: String,
+		required: true,
+	},
+	category: {
+		type: String,
+		required: true,
+	},
+	details: {
+		type: String,
+		required: true,
+	},
+});
+
 const User = mongoose.model('User', UserSchema);
+const Event = mongoose.model('Event', EventSchema);
 
 app.post('/register', async (req, res) => {
 	const { username, password } = req.body;
