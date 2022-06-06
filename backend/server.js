@@ -190,6 +190,25 @@ app.get('/events/:userId', async (req, res) => {
 	}
 });
 
+// DELETE events
+app.delete('/events/:eventId', authenticateUser);
+app.delete('/events/:eventId', async (req, res) => {
+	const { eventId } = req.params;
+
+	try {
+		const deleteEvent = await Event.findByIdAndDelete({ _id: eventId });
+		if (deleteEvent) {
+			res.status(200).json({ response: deleteEvent, success: true });
+		} else {
+			res.status(400).json({ response: 'Event not found', success: false });
+		}
+	} catch (error) {
+		res
+			.status(400)
+			.json({ response: 'Could not delete event', success: false });
+	}
+});
+
 // Start defining your routes here
 app.get('/', (req, res) => {
 	res.send('Hello Technigo!');
