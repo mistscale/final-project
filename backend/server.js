@@ -55,6 +55,10 @@ const EventSchema = mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	createAt: {
+		type: Date,
+		default: () => new Date(),
+	},
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true,
@@ -144,6 +148,47 @@ const authenticateUser = async (req, res, next) => {
 		});
 	}
 };
+
+// POST new event
+app.post('/events', authenticateUser);
+app.post('/events', async (req, res) => {
+	const { title, date, location, category, details } = req.body;
+
+	try {
+		const newEvent = await new Event({
+			title,
+			date,
+			location,
+			category,
+			details,
+			user: req.user,
+		}).save();
+		res.status(200).json({ response: newEvent, success: true });
+	} catch (err) {
+		res.status(400).json({
+			response: error,
+			success: false,
+		});
+	}
+});
+
+// GET all events of user
+app.get('/events/:userId', authenticateUser);
+app.get('/events/:userId', async (req, res) => {
+	const { userId } = req.params;
+
+	try {
+		const events = await Event.find({ user: userId }).sort({
+			createdAt: 'desc',
+		});
+		res.status(200).json({ response: events, success: true });
+	} catch (err) {
+		res.status(400).json({
+			response: error,
+			success: false,
+		});
+	}
+});
 
 // Start defining your routes here
 app.get('/', (req, res) => {
