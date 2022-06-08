@@ -182,7 +182,7 @@ app.get('/events/:userId', async (req, res) => {
 			createdAt: 'desc',
 		});
 		res.status(200).json({ response: events, success: true });
-	} catch (err) {
+	} catch (error) {
 		res.status(400).json({
 			response: error,
 			success: false,
