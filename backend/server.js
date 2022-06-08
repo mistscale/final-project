@@ -58,12 +58,12 @@ const EventSchema = mongoose.Schema({
 	createAt: {
 		type: Date,
 		default: () => new Date(),
-	},
-	user: {
-		type: mongoose.Schema.Types.ObjectId,
-		required: true,
-		ref: 'User',
-	},
+	 },
+	// user: {
+	// 	type: mongoose.Schema.Types.ObjectId,
+	// 	required: true,
+	// 	ref: 'User',
+	// },
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -161,10 +161,10 @@ app.post('/events', async (req, res) => {
 			location,
 			category,
 			details,
-			user: req.user,
+			// user: req.user,
 		}).save();
 		res.status(200).json({ response: newEvent, success: true });
-	} catch (err) {
+	} catch (error) {
 		res.status(400).json({
 			response: error,
 			success: false,
