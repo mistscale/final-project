@@ -5,7 +5,7 @@ import Welcome from 'pages/Welcome';
 import Login from 'pages/Login';
 import Signup from 'pages/SignUp';
 import NewEvent from 'pages/NewEvent';
-// import Confirmation from 'pages/Confirmation';
+import Confirmation from 'pages/Confirmation';
 import MyEvents from 'pages/MyEvents';
 import NotFound from 'pages/NotFound';
 
