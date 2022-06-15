@@ -209,6 +209,29 @@ app.delete('/events/:eventId', async (req, res) => {
 	}
 });
 
+// PATCH event
+app.patch('/events/:eventId', authenticateUser);
+app.patch('/events/:eventId', async (req, res) => {
+	const { eventId } = req.params;
+	const { title, date, location, category, details } = req.body;
+
+	try {
+		const updateEvent = await Event.findByIdAndUpdate(
+			{ _id: eventId },
+			{ title, date, location, category, details }
+		);
+		if (updateEvent) {
+			res.status(200).json({ response: updateEvent, success: true });
+		} else {
+			res.status(400).json({ response: 'Event not found', success: false });
+		}
+	} catch (error) {
+		res
+			.status(400)
+			.json({ response: 'Could not update event', success: false });
+	}
+});
+
 // Start defining your routes here
 app.get('/', (req, res) => {
 	res.send('Hello Technigo!');
