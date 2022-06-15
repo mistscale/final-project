@@ -3,6 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
+import listEndpoints from "express-list-endpoints";
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/final-project';
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -59,11 +60,6 @@ const EventSchema = mongoose.Schema({
 		type: Date,
 		default: () => new Date(),
 	 },
-	// user: {
-	// 	type: mongoose.Schema.Types.ObjectId,
-	// 	required: true,
-	// 	ref: 'User',
-	// },
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -161,7 +157,6 @@ app.post('/events', async (req, res) => {
 			location,
 			category,
 			details,
-			// user: req.user,
 		}).save();
 		res.status(200).json({ response: newEvent, success: true });
 	} catch (error) {
@@ -234,7 +229,7 @@ app.patch('/events/:eventId', async (req, res) => {
 
 // Start defining your routes here
 app.get('/', (req, res) => {
-	res.send('Hello Technigo!');
+	res.send(listEndpoints(app));
 });
 
 // Start the server
