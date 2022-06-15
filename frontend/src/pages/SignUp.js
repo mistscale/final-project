@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from 'utils/utils';
+import image from '../images/trip.jpg'
+import "../index.css"
 
 import user from 'reducers/user';
 
@@ -65,9 +67,11 @@ const Signup = () => {
       });
   };
 
+  
   return (
     <>
       <div className="container">
+      <h1>Type your details</h1>
         <form onSubmit={onFormSubmit}>
           <TextField
             id="outlined-basic"
@@ -118,7 +122,9 @@ const Signup = () => {
           >
             Submit
           </Button>
+          <img src={image} className="image" alt='image'/>
         </form>
+        
         {errorMessage !== null && (
           <Alert severity="error">{errorMessage}</Alert>
         )}

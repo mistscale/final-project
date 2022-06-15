@@ -28,3 +28,10 @@ form {
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
+
+.image {
+  height: 200px;
+  width: 580px;
+  align-self: center;
+  margin-top: 2em;
+}
