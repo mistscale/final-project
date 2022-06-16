@@ -8,8 +8,7 @@ import user from 'reducers/user';
 import Welcome from 'pages/Welcome';
 import Login from 'pages/Login';
 import Signup from 'pages/SignUp';
-// import NewEvent from 'pages/NewEvent';
-// import Confirmation from 'pages/Confirmation';
+import NewEventForm from 'pages/NewEventForm';
 import MyEvents from 'pages/MyEvents';
 import NotFound from 'pages/NotFound';
 
@@ -27,6 +26,7 @@ export const App = () => {
           <Route path="/" element={<Welcome />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/neweventform" element={<NewEventForm />}<</Route>
           <Route path="/myevents" element={<MyEvents />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
