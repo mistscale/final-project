@@ -133,7 +133,3 @@ const NewEventForm = () => {
 };
 
 export default NewEventForm;
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Secur
