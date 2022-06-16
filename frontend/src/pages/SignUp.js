@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from 'utils/utils';
-import image from '../images/trip.jpg'
+import image from '../images/welcome.jpg'
 import "../index.css"
 
 import user from 'reducers/user';
@@ -28,7 +28,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (accessToken) {
-      navigate('/notes');
+      navigate('/myevents');
     }
   }, [accessToken]);
 
@@ -68,6 +68,7 @@ const Signup = () => {
 
   return (
     <>
+      <h1>Welcome to our event app</h1>
       <div className="container">
         <form onSubmit={onFormSubmit}>
           <TextField

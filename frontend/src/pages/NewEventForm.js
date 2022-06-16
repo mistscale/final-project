@@ -9,30 +9,6 @@ const NewEventForm = () => {
 	const [category, setCategory] = useState('');
 	const [details, setDetails] = useState('');
 
-	// const onFormSubmit = (event) => {
-	// 	event.preventDefault();
-
-	// 	const options = {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 			Authorization:
-	// 				'10d0c7eac9d9a83fd4afcfea7ed0cd441eeed15be4260a56000e9968a6363097d24609f0d8ff4ab4139d04b266126dccd0f4054a8a04e2d55fd8a88ad1e1428731c658bb4e17fe78fdb4b8c59120c8f411b600fd903058202efc31749967388d341c71f1bc867028562006c6b31ddb0da92dcc86248c33f3c9927cfbc7216cea',
-	// 		},
-	// 		body: JSON.stringify({
-	// 			title: title,
-	// 			date: date,
-	// 			location: location,
-	// 			category: category,
-	// 			details: details,
-	// 		}),
-	// 	};
-	// 	fetch(EVENT_URL, options)
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			window.location.reload();
-	// 		});
-	// };
 	const navigate = useNavigate();
 
 	const onFormSubmit = (event) => {
@@ -95,15 +71,6 @@ const NewEventForm = () => {
 						onChange={(e) => setDate(e.target.value)}
 					/>
 				</label>
-				{/* <label>Time
-                    <input
-                        name="time"
-                        type="time"
-                        value={time}
-                        required
-                        onChange={(e) => setTime(e.target.value)}
-                    />
-                </label> */}
 				<label>
 					Category
 					<select
