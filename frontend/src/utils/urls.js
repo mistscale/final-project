@@ -1,0 +1,1 @@
+export const EVENT_URL = 'https://final-project-eventapp.herokuapp.com/events'
