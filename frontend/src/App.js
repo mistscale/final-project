@@ -26,7 +26,7 @@ export const App = () => {
           <Route path="/" element={<Welcome />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/neweventform" element={<NewEventForm />}<</Route>
+          <Route path="/neweventform" element={<NewEventForm />}></Route>
           <Route path="/myevents" element={<MyEvents />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
