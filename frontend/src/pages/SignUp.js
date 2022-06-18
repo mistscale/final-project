@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { API_URL } from 'utils/utils';
+import { EVENT_URL } from 'utils/utils';
 import image from '../images/trip.jpg'
 import "../index.css"
 
@@ -43,7 +43,7 @@ const Signup = () => {
       body: JSON.stringify({ username: username, password: password }),
     };
 
-    fetch(API_URL(mode), options)
+    fetch(EVENT_URL(mode), options)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
