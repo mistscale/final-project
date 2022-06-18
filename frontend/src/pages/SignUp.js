@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { API_URL } from 'utils/utils';
-import image from '../images/welcome.jpg'
+import { API_URL } from 'utils/urls';
 import "../index.css"
 
 import user from 'reducers/user';
 
-import TextField from '@mui/material/TextField';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
-
+  
   const [mode, setMode] = useState('register');
+  const theme = createTheme();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,6 +59,7 @@ const Signup = () => {
             dispatch(user.actions.setAccessToken(data.accessToken));
             dispatch(user.actions.setUserName(data.username));
             dispatch(user.actions.setError(null));
+            navigate('/login')
             setErrorMessage(null);
           });
         } else {
@@ -67,65 +75,74 @@ const Signup = () => {
   };
 
   return (
-    <>
-      <div className="container">
-        <form onSubmit={onFormSubmit}>
-          <TextField
-            id="outlined-basic"
-            label="Username"
-            variant="outlined"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
 
-          <TextField
-            id="outlined-password-input"
-            label="Password"
-            type="password"
-            variant="outlined"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <FormControl>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="register"
-              name="radio-buttons-group"
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box component="form" noValidate onSubmit={onFormSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
             >
-              <FormControlLabel
-                value="register"
-                control={<Radio />}
-                label="Register"
-                checked={mode === 'register'}
-                onChange={() => setMode('register')}
-              />
-
-              <FormControlLabel
-                value="login"
-                control={<Radio />}
-                label="Log in"
-                checked={mode === 'login'}
-                onChange={() => setMode('login')}
-              />
-            </RadioGroup>
-          </FormControl>
-
-          <Button
-            variant="contained"
-            type="submit"
-            disabled={password.length < 5}
-          >
-            Submit
-          </Button>
-          <img src={image} className="image" alt='image'/>
-        </form>
+              Sign Up
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href="/login" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
         {errorMessage !== null && (
           <Alert severity="error">{errorMessage}</Alert>
         )}
-      </div>
-    </>
+      </Container>
+    </ThemeProvider>
   );
 };
 
