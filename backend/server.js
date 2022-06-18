@@ -60,6 +60,9 @@ const EventSchema = mongoose.Schema({
 		type: Date,
 		default: () => new Date(),
 	 },
+	user: {
+		type: String,
+	}
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -148,7 +151,7 @@ const authenticateUser = async (req, res, next) => {
 // POST new event
 app.post('/events', authenticateUser);
 app.post('/events', async (req, res) => {
-	const { title, date, location, category, details } = req.body;
+	const { title, date, location, category, details, user } = req.body;
 
 	try {
 		const newEvent = await new Event({
@@ -157,6 +160,7 @@ app.post('/events', async (req, res) => {
 			location,
 			category,
 			details,
+			user,
 		}).save();
 		res.status(200).json({ response: newEvent, success: true });
 	} catch (error) {
