@@ -5,6 +5,8 @@ import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import listEndpoints from 'express-list-endpoints';
 
+// import 'dotenv/config';
+
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/final-project';
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = Promise;
@@ -167,9 +169,8 @@ app.post('/events', async (req, res) => {
   }
 });
 
-
 // GET all events of user
-app.get('/events/:userId', authenticateUser);
+// app.get('/events/:userId', authenticateUser);
 app.get('/events/:userId', async (req, res) => {
   const { userId } = req.params;
 
@@ -237,3 +238,32 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
+// require('dotenv').config();
+// const nodemailer = require('nodemailer');
+
+// // Step 1
+// let transporter = nodemailer.createTransport({
+//   service: 'outlook',
+//   auth: {
+//     user: process.env.EMAIL,
+//     pass: process.env.PASSWORD
+//   },
+// });
+
+// // Step 2
+// let mailOptions = {
+//   from: 'nabil1977@outlook.dk',
+//   to: 'mikaeel1@outlook.com',
+//   subject: 'Testing mail',
+//   text: 'It works',
+// };
+
+// // Step 3
+// transporter.sendMail(mailOptions, (err, data) => {
+//   if (err) {
+//     console.log('Error occurs');
+//   } else {
+//     console.log('Email sent!!!');
+//   }
+// });
