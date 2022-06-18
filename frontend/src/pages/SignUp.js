@@ -68,7 +68,6 @@ const Signup = () => {
 
   return (
     <>
-      <h1>Welcome to our event app</h1>
       <div className="container">
         <form onSubmit={onFormSubmit}>
           <TextField
