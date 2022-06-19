@@ -239,31 +239,36 @@ app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
 
-// require('dotenv').config();
-// const nodemailer = require('nodemailer');
 
-// // Step 1
-// let transporter = nodemailer.createTransport({
-//   service: 'outlook',
-//   auth: {
-//     user: process.env.EMAIL,
-//     pass: process.env.PASSWORD
-//   },
-// });
 
-// // Step 2
-// let mailOptions = {
-//   from: 'nabil1977@outlook.dk',
-//   to: 'mikaeel1@outlook.com',
-//   subject: 'Testing mail',
-//   text: 'It works',
-// };
+// const bodyParser = require('body-parser');
+// const exphbs = require('express-handlebars');
+require('dotenv').config();
+const nodemailer = require('nodemailer');
 
-// // Step 3
-// transporter.sendMail(mailOptions, (err, data) => {
-//   if (err) {
-//     console.log('Error occurs');
-//   } else {
-//     console.log('Email sent!!!');
-//   }
-// });
+// Step 1
+let transporter = nodemailer.createTransport({
+  host: 'smtp.ethereal.email',
+  port: 587,
+  auth: {
+    user: 'nikko.ratke1@ethereal.email',
+    pass: 'Yzdk8AnT5mCWQHq2Ag'
+  }
+});
+
+// Step 2
+let mailOptions = {
+  from: 'nikko.ratke1@ethereal.email',
+  to: 'nabil1977@outlook.dk',
+  subject: 'Testing mail',
+  text: 'It works',
+};
+
+// Step 3
+transporter.sendMail(mailOptions, (err, data) => {
+  if (err) {
+    console.log('Error occurs', err);
+  } else {
+    console.log('Email sent!!!');
+  }
+});

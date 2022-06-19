@@ -16,14 +16,19 @@
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.8.3",
     "bcrypt": "^5.0.1",
+    "body": "^5.1.0",
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
     "express-list-endpoints": "^6.0.0",
     "mongoose": "^6.3.0",
     "nodemailer": "^6.7.5",
     "nodemon": "^2.0.15",
+    "parser": "^0.1.4",
     "project-auth-parent": "file:.."
   }
+
 }
