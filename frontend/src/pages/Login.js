@@ -33,7 +33,8 @@ const Login = () => {
 
     useEffect(() => {
         if (accessToken) {
-            navigate('/myevents');
+            //navigate('/myevents');
+            navigate('/neweventform');
         }
     }, [accessToken]);
 
