@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 //import { EVENT_URL } from 'utils/urls';
 import user from 'reducers/user';
+
+import Button from '@mui/material/Button';
 
 const MyEvents = () => {
 	const accessToken = useSelector((store) => store.user.accessToken);
@@ -11,6 +13,7 @@ const MyEvents = () => {
 	const [events, setEvents] = useState({});
 
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (!accessToken) {
@@ -35,6 +38,19 @@ const MyEvents = () => {
 			.then((events) => setEvents(events));
 	}, [accessToken]);
 	console.log(events);
+
+	return (
+		<>
+			<Button
+				variant='outlined'
+				onClick={() => {
+					dispatch(user.actions.setAccessToken(null));
+				}}
+			>
+				Log out
+			</Button>
+		</>
+	);
 };
 
 export default MyEvents;
