@@ -17,7 +17,7 @@ const MyEvents = () => {
 
 	useEffect(() => {
 		if (!accessToken) {
-			navigate('/');
+			navigate('/login');
 		}
 	}, [accessToken, navigate]);
 

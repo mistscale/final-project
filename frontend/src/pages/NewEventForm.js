@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EVENT_URL } from 'utils/urls';
 import { useNavigate } from 'react-router-dom';
 import user from 'reducers/user';
@@ -13,9 +13,15 @@ const NewEventForm = () => {
 
 	const accessToken = useSelector((store) => store.user.accessToken);
 
-	const userId = useSelector((store) => store.user.userId)
+	const userId = useSelector((store) => store.user.userId);
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!accessToken) {
+			navigate('/login');
+		}
+	}, [accessToken, navigate]);
 
 	const onFormSubmit = (event) => {
 		event.preventDefault();
@@ -24,8 +30,7 @@ const NewEventForm = () => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization:
-					accessToken,
+				Authorization: accessToken,
 			},
 			body: JSON.stringify({
 				title: title,
@@ -33,7 +38,7 @@ const NewEventForm = () => {
 				location: location,
 				category: category,
 				details: details,
-				user: userId
+				user: userId,
 			}),
 		};
 		fetch(EVENT_URL, options)
