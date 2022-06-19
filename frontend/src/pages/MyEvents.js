@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+//import { EVENT_URL } from 'utils/urls';
 import user from 'reducers/user';
 
 const MyEvents = () => {
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const userId = useSelector((store) => store.user.userId);
+
+	const [events, setEvents] = useState({});
 
 	const navigate = useNavigate();
 
@@ -23,14 +25,6 @@ const MyEvents = () => {
 				'Content-Type': 'application/json',
 				Authorization: accessToken,
 			},
-			// body: JSON.stringify({
-			// 	title: title,
-			// 	date: date,
-			// 	location: location,
-			// 	category: category,
-			// 	details: details,
-			// 	user: userId,
-			// }),
 		};
 
 		fetch(
@@ -38,10 +32,9 @@ const MyEvents = () => {
 			options
 		)
 			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-			});
-	});
+			.then((events) => setEvents(events));
+	}, [accessToken]);
+	console.log(events);
 };
 
 export default MyEvents;
