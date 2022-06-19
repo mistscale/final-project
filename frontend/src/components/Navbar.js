@@ -8,7 +8,7 @@ const Navbar = () => {
 				<NavLink to='/'>Home</NavLink>
 				<NavLink to='/neweventform'>Create New Event</NavLink>
 				<NavLink to='/myevents'>My Events</NavLink>
-				<NavLink to='/signup'>Sign Up</NavLink>
+				<NavLink to='/login'>Log In</NavLink>
 			</Nav>
 		</>
 	);
