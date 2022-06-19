@@ -3,9 +3,14 @@ import { useNavigate } from 'react-router-dom';
 
 import illustration from '../images/illustration.jpg';
 
+import Button from '@mui/material/Button';
+
 const Welcome = () => {
 	const navigate = useNavigate();
-	const handleOnClick = () => {
+	const handleOnClickLogIn = () => {
+		navigate('/login');
+	};
+	const handleOnClickSignUp = () => {
 		navigate('/signup');
 	};
 	return (
@@ -15,10 +20,17 @@ const Welcome = () => {
 				src={illustration}
 				className='illustration'
 				alt='illustration of a party'
-                
 			/>
-			<p>To create events you need to log in to your account or sign up</p>
-			<button onClick={handleOnClick}>Click here to login/signup</button>
+			<p>
+				To create an event you need to log in to your account or sign up to
+				create a new account.
+			</p>
+			<Button onClick={handleOnClickLogIn} variant='outlined'>
+				Log In
+			</Button>
+			<Button onClick={handleOnClickSignUp} variant='outlined'>
+				Sign Up
+			</Button>
 		</div>
 	);
 };
