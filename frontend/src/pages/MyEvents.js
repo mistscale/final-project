@@ -10,7 +10,7 @@ const MyEvents = () => {
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const userId = useSelector((store) => store.user.userId);
 
-	const [events, setEvents] = useState({});
+	const [events, setEvents] = useState([]);
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -35,12 +35,21 @@ const MyEvents = () => {
 			options
 		)
 			.then((res) => res.json())
-			.then((events) => setEvents(events));
+			.then((json) => setEvents(json.response));
 	}, [accessToken]);
 	console.log(events);
 
 	return (
 		<>
+			{events.map((item) => (
+				<div key={item._id}>
+					<p>{item.title}</p>
+					<p>Date: {item.date}</p>
+					<p>Location: {item.location}</p>
+					<p>Category: {item.category}</p>
+					<p>Details: {item.details}</p>
+				</div>
+			))}
 			<Button
 				variant='outlined'
 				onClick={() => {
