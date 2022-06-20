@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 //import { EVENT_URL } from 'utils/urls';
+import image from '../images/welcome.jpg';
 import user from 'reducers/user';
 
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const MyEvents = () => {
 	const accessToken = useSelector((store) => store.user.accessToken);
@@ -41,15 +48,35 @@ const MyEvents = () => {
 
 	return (
 		<>
-			{events.map((item) => (
-				<div key={item._id}>
-					<p>{item.title}</p>
-					<p>Date: {item.date}</p>
-					<p>Location: {item.location}</p>
-					<p>Category: {item.category}</p>
-					<p>Details: {item.details}</p>
-				</div>
-			))}
+			<EventWrapper>
+				{events.map((item) => (
+					<Card sx={{ maxWidth: 345 }} key={item._id}>
+						<CardMedia
+							component='img'
+							height='140'
+							src={image}
+							alt='event image'
+						/>
+						<CardContent>
+							<Typography gutterBottom variant='h5' component='div'>
+								{item.title}
+							</Typography>
+							<Typography variant='body1' gutterBottom>
+								{item.category}
+							</Typography>
+							<Typography variant='body1' gutterBottom>
+								When: {item.date}
+							</Typography>
+							<Typography variant='body1' gutterBottom>
+								Where: {item.location}
+							</Typography>
+							<Typography variant='body1' gutterBottom>
+								Details: {item.details}
+							</Typography>
+						</CardContent>
+					</Card>
+				))}
+			</EventWrapper>
 			<Button
 				variant='outlined'
 				onClick={() => {
@@ -61,5 +88,12 @@ const MyEvents = () => {
 		</>
 	);
 };
+
+const EventWrapper = styled.div`
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 40px;
+	margin: 50px;
+`;
 
 export default MyEvents;
