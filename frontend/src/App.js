@@ -11,6 +11,7 @@ import Signup from 'pages/SignUp';
 import NewEventForm from 'pages/NewEventForm';
 import MyEvents from 'pages/MyEvents';
 import NotFound from 'pages/NotFound';
+import Confirmation from 'pages/Confirmation';
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -26,6 +27,7 @@ export const App = () => {
           <Route path="/" element={<Welcome />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/confirmation" element={<Confirmation />}></Route>
           <Route path="/neweventform" element={<NewEventForm />}></Route>
           <Route path="/myevents" element={<MyEvents />}></Route>
           <Route path="*" element={<NotFound />}></Route>
