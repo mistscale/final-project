@@ -12,14 +12,3 @@ form {
 	gap: 10px;
 }
 
-.container {
-	width: 80%;
-	max-width: 600px;
-	margin: auto;
-	background-color: #fff;
-	padding: 20px;
-}
-
-.illustration {
-	width: 100%;
-}
