@@ -14,16 +14,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import swal from 'sweetalert';
 
-
 const MyEvents = () => {
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const userId = useSelector((store) => store.user.userId);
 
 	const [events, setEvents] = useState([]);
 	const [eventId, setEventId] = useState('');
-	console.log(eventId)
-	const handleDeleteClick = () => {
-
+	console.log(eventId);
+	const handleDeleteClick = (eventId) => {
 		const options = {
 			method: 'DELETE',
 			headers: {
@@ -37,18 +35,11 @@ const MyEvents = () => {
 			options
 		)
 			.then((res) => res.json())
-			.then((data) => {
-				if (data.success) {
-					setEventId('');
-					navigate('/login')
-				}
-			})
-
-	}
+			.then((json) => setEventId(json.response));
+		// window.location.reload()
+	};
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
-
 
 	useEffect(() => {
 		if (!accessToken) {
@@ -73,7 +64,6 @@ const MyEvents = () => {
 			.then((json) => setEvents(json.response));
 	}, [accessToken]);
 	console.log(events);
-
 
 	return (
 		<>
@@ -103,28 +93,28 @@ const MyEvents = () => {
 								Details: {item.details}
 							</Typography>
 
-							<Button variant="contained"
+							<Button
+								variant='contained'
 								type='button'
 								onClick={() => {
-									setEventId(item._id)
+									setEventId(item._id);
 									swal({
-										title: "Are you sure?",
-										text: "Once deleted, you will not be able to recover this event!",
-										icon: "warning",
+										title: 'Are you sure?',
+										text: 'Once deleted, you will not be able to recover this event!',
+										icon: 'warning',
 										buttons: true,
 										dangerMode: true,
-									})
-										.then((willDelete) => {
-											if (willDelete) {
-												handleDeleteClick(item._id);
-											} else {
-												setEventId('');
-											}
-										});;
-								}
-								}
-								>Delete</Button>
-
+									}).then((willDelete) => {
+										if (willDelete) {
+											handleDeleteClick(item._id);
+										} else {
+											setEventId('');
+										}
+									});
+								}}
+							>
+								Delete
+							</Button>
 						</CardContent>
 					</Card>
 				))}
@@ -137,7 +127,6 @@ const MyEvents = () => {
 			>
 				Log out
 			</Button>
-
 		</>
 	);
 };
