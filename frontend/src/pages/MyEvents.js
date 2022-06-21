@@ -153,7 +153,6 @@ const MyEvents = () => {
 const EventWrapper = styled.div`
 	display: grid;
 	grid-template-columns: 1fr;
-	justify-content: center;
 	gap: 40px;
 	margin: 50px;
 	@media (min-width: 667px) {
@@ -161,6 +160,8 @@ const EventWrapper = styled.div`
 	}
 	@media (min-width: 1024px) {
 		grid-template-columns: repeat(3, 1fr);
+		max-width: 1200px;
+		margin: 50px auto;
 	}
 `;
 
