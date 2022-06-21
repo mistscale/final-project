@@ -5,6 +5,7 @@ import styled from 'styled-components';
 //import { EVENT_URL } from 'utils/urls';
 import image from '../images/illustration.jpg';
 import user from 'reducers/user';
+import Navbar from 'components/Navbar';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -48,6 +49,7 @@ const MyEvents = () => {
 
 	return (
 		<>
+			<Navbar />
 			<EventWrapper>
 				{events.map((item) => (
 					<Card sx={{ maxWidth: 400 }} key={item._id}>
@@ -77,14 +79,6 @@ const MyEvents = () => {
 					</Card>
 				))}
 			</EventWrapper>
-			<Button
-				variant='outlined'
-				onClick={() => {
-					dispatch(user.actions.setAccessToken(null));
-				}}
-			>
-				Log out
-			</Button>
 		</>
 	);
 };
