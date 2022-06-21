@@ -12,6 +12,7 @@ const Confirmation = () => {
       <input type="text" name="name" placeholder="Type your name" required />
       <label>Your Email adress</label>
       <input type="email" name="email" placeholder="Email adress" required />
+      <input type="hidden" name="_autoresponse" value="your custom message"></input>
       <input
         type="hidden"
         name="_next"
