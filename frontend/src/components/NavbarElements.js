@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Nav = styled.nav`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-end;
 	height: auto;
 	background-color: #fa9746;
 	@media (min-width: 600px) {
@@ -20,8 +20,6 @@ export const NavLink = styled(Link)`
 	text-decoration: none;
 	text-transform: uppercase;
 	padding: 0 20px;
-	font-weight: 400;
-	font-size: 18px;
 	cursor: pointer;
 	&.active {
 		background-color: #ed7e2a;
