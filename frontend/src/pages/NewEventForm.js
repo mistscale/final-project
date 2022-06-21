@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import user from 'reducers/user';
 import { useSelector } from 'react-redux';
 import swal from 'sweetalert';
+import Navbar from 'components/Navbar';
 
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
@@ -25,7 +26,6 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
-import Navbar from 'components/Navbar';
 
 const NewEventForm = () => {
 	const [title, setTitle] = useState('');
@@ -89,6 +89,7 @@ const NewEventForm = () => {
 
 	return (
 		<>
+		<Navbar />
 		<ThemeProvider theme={theme}>
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
@@ -101,7 +102,7 @@ const NewEventForm = () => {
 					}}
 				>
 					<Typography component="h1" variant="h5">
-						Create a Event
+						New event
 					</Typography>
 					<Box component="form" noValidate onSubmit={onFormSubmit} sx={{ mt: 3 }}>
 					<FormControl sx={{ m: 0, width: 400 }}>

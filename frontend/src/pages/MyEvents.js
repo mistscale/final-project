@@ -163,4 +163,8 @@ const Bold = styled.span`
 	font-weight: 500;
 `;
 
+const DeleteButton = styled.button`
+	justify-content: center;
+`
+
 export default MyEvents;

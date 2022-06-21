@@ -11,6 +11,7 @@ const Navbar = () => {
 				<NavLink
 					to='/'
 					onClick={() => {
+						localStorage.removeItem("user");
 						dispatch(user.actions.setAccessToken(null));
 					}}
 				>
