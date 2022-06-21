@@ -42,8 +42,8 @@ const WelcomeWrapper = styled.div`
 	max-width: 600px;
 	margin: auto;
 	background-color: #fff;
-	padding: 20px;
 	text-align: center;
+	margin: 50px auto;
 `;
 
 const ButtonWrapper = styled.div`

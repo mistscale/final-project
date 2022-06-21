@@ -11,7 +11,6 @@ import Signup from 'pages/SignUp';
 import NewEventForm from 'pages/NewEventForm';
 import MyEvents from 'pages/MyEvents';
 import NotFound from 'pages/NotFound';
-import Navbar from 'components/Navbar';
 
 const reducer = combineReducers({
 	user: user.reducer,
@@ -23,7 +22,6 @@ export const App = () => {
 	return (
 		<Provider store={store}>
 			<BrowserRouter>
-				<Navbar />
 				<Routes>
 					<Route path='/' element={<Welcome />}></Route>
 					<Route path='/login' element={<Login />}></Route>
