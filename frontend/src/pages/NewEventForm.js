@@ -89,6 +89,7 @@ const NewEventForm = () => {
 
 	return (
 		<>
+		<Navbar />
 		<ThemeProvider theme={theme}>
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
