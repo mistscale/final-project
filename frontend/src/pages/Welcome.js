@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import illustration from '../images/illustration.jpg';
+import image from '../images/welcome.jpg';
 
 import Button from '@mui/material/Button';
 
@@ -17,9 +17,9 @@ const Welcome = () => {
 		<div className='container'>
 			<h1>Welcome to event planner app</h1>
 			<img
-				src={illustration}
+				src={image}
 				className='illustration'
-				alt='illustration of a party'
+				alt='illustration of a calendar'
 			/>
 			<p>
 				To create an event you need to log in to your account or sign up to

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 //import { EVENT_URL } from 'utils/urls';
-import image from '../images/welcome.jpg';
+import image from '../images/illustration.jpg';
 import user from 'reducers/user';
 
 import Card from '@mui/material/Card';
@@ -53,7 +53,7 @@ const MyEvents = () => {
 					<Card sx={{ maxWidth: 400 }} key={item._id}>
 						<CardMedia
 							component='img'
-							height='140'
+							height='200'
 							src={image}
 							alt='event image'
 						/>
