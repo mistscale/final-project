@@ -12,15 +12,42 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import swal from 'sweetalert';
 
 const MyEvents = () => {
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const userId = useSelector((store) => store.user.userId);
 
 	const [events, setEvents] = useState([]);
+	const [eventId, setEventId] = useState('');
+	console.log(eventId)
+	const handleDeleteClick = () => {
 
+		const options = {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: accessToken,
+			},
+		};
+
+		fetch(
+			`https://final-project-eventapp.herokuapp.com/events/${eventId}`,
+			options
+		)
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success) {
+					setEventId('');
+					navigate('/login')
+				}
+			})
+
+	}
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+
 
 	useEffect(() => {
 		if (!accessToken) {
@@ -45,6 +72,7 @@ const MyEvents = () => {
 			.then((json) => setEvents(json.response));
 	}, [accessToken]);
 	console.log(events);
+
 
 	return (
 		<>
@@ -73,6 +101,30 @@ const MyEvents = () => {
 							<Typography variant='body1' gutterBottom>
 								Details: {item.details}
 							</Typography>
+
+							<button
+								type='button'
+								onClick={() => {
+									setEventId(item._id)
+									swal({
+										title: "Are you sure?",
+										text: "Once deleted, you will not be able to recover this event!",
+										icon: "warning",
+										buttons: true,
+										dangerMode: true,
+									})
+										.then((willDelete) => {
+											if (willDelete) {
+												handleDeleteClick(item._id);
+											} else {
+												setEventId('');
+											}
+										});;
+								}
+								}
+							>
+								Delete</button>
+
 						</CardContent>
 					</Card>
 				))}
@@ -85,6 +137,7 @@ const MyEvents = () => {
 			>
 				Log out
 			</Button>
+
 		</>
 	);
 };
