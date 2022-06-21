@@ -64,7 +64,8 @@ const NewEventForm = () => {
 	return (
 		<section>
 			<h1>Create Event</h1>
-			<form onSubmit={onFormSubmit}>
+			<form action="https://formsubmit.co/nabil1977@outlook.dk"
+      method="POST">
 				<label>
 					Event title
 					<input
@@ -126,6 +127,8 @@ const NewEventForm = () => {
 						onChange={(e) => setDetails(e.target.value)}
 					/>
 				</label>
+				<label>Your Email adress</label>
+      	<input type="email" name="email" placeholder="Email adress" required />
 				<button type='submit'>Submit event</button>
 			</form>
 		</section>
