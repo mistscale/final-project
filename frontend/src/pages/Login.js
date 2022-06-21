@@ -29,7 +29,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const accessToken = useSelector((store) => store.user.accessToken);
-  
+
 
     useEffect(() => {
         if (accessToken) {
@@ -59,7 +59,12 @@ const Login = () => {
                         dispatch(user.actions.setUserName(data.username));
                         dispatch(user.actions.setError(null));
                         setErrorMessage(null);
-                    });
+                    })
+                    localStorage.setItem("user", JSON.stringify({
+                        userId: data.userId,
+                        username: data.username,
+                        accessToken: data.accessToken
+                      }));
                 } else {
                     batch(() => {
                         dispatch(user.actions.setError(data.response));
@@ -116,7 +121,7 @@ const Login = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            
+
                             <Button
                                 type="submit"
                                 fullWidth
@@ -132,15 +137,15 @@ const Login = () => {
                                     </Link>
                                 </Grid>
                             </Grid>
-                            
+
                         </Box>
                     </Box>
                     {errorMessage !== null && (
-          <Alert severity="error">{errorMessage}</Alert>
-        )}
+                        <Alert severity="error">{errorMessage}</Alert>
+                    )}
                 </Container>
             </ThemeProvider>
-    
+
         </>
     );
 }
