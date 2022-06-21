@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 //import { EVENT_URL } from 'utils/urls';
-import image from '../images/welcome.jpg';
+import image1 from '../images/kidsparty.jpg';
+import image2 from '../images/af.jpg';
+import image3 from '../images/party.jpg';
 import user from 'reducers/user';
 
 import Card from '@mui/material/Card';
@@ -36,7 +38,7 @@ const MyEvents = () => {
 		)
 			.then((res) => res.json())
 			.then((json) => setEventId(json.response));
-		// window.location.reload()
+		//window.location.reload()
 	};
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -70,12 +72,30 @@ const MyEvents = () => {
 			<EventWrapper>
 				{events.map((item) => (
 					<Card sx={{ maxWidth: 345 }} key={item._id}>
-						<CardMedia
-							component='img'
-							height='140'
-							src={image}
-							alt='event image'
-						/>
+						{item.category === 'Kids party' && (
+							<CardMedia
+								component='img'
+								height='140'
+								src={image1}
+								alt='kids party image'
+							/>
+						)}
+						{item.category === 'After work' && (
+							<CardMedia
+								component='img'
+								height='140'
+								src={image2}
+								alt='after work image'
+							/>
+						)}
+						{item.category === 'Party' && (
+							<CardMedia
+								component='img'
+								height='140'
+								src={image3}
+								alt='party image'
+							/>
+						)}
 						<CardContent>
 							<Typography gutterBottom variant='h5' component='div'>
 								{item.title}

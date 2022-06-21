@@ -3,7 +3,7 @@ import { EVENT_URL } from 'utils/urls';
 import { useNavigate } from 'react-router-dom';
 import user from 'reducers/user';
 import { useSelector } from 'react-redux';
-
+import swal from 'sweetalert';
 
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
@@ -32,9 +32,9 @@ const NewEventForm = () => {
 	const [location, setLocation] = useState('');
 	const [category, setCategory] = useState('');
 	const [details, setDetails] = useState('');
-	
+	const [errorMessage, setErrorMessage] = useState(null);
 	const theme = createTheme();
-
+    
 	const accessToken = useSelector((store) => store.user.accessToken);
 
 	const userId = useSelector((store) => store.user.userId);
@@ -69,11 +69,25 @@ const NewEventForm = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				// window.location.reload()
-				navigate('/myevents');
+				if (data.success) {
+					setErrorMessage(null);
+					swal({
+						title: "Party time!",
+						text: "Event created successfully!",
+						icon: "success",
+						button: "Awesome!",
+					});
+					navigate('/myevents');
+				} else {
+					setErrorMessage(data.response.message)
+					console.log(errorMessage)
+				}
+
 			});
 	};
 
 	return (
+		<>
 		<ThemeProvider theme={theme}>
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
@@ -102,9 +116,9 @@ const NewEventForm = () => {
 							value={category}
 							onChange={(e) => setCategory(e.target.value)}
 						>
-							<MenuItem value={10}>Kid's party</MenuItem>
-							<MenuItem value={20}>After work</MenuItem>
-							<MenuItem value={30}>Party</MenuItem>
+							<MenuItem value="Kids party">Kids party</MenuItem>
+							<MenuItem value="After work">After work</MenuItem>
+							<MenuItem value="Party">Party</MenuItem>
 						</Select>
 					
 				  </FormControl>
@@ -165,16 +179,18 @@ const NewEventForm = () => {
 						fullWidth
 						variant="contained"
 						sx={{ mt: 3, mb: 2 }}
+						
 					>
 						Submit
 					</Button>
 				</Box>
 			</Box>
-			{/* {errorMessage !== null && (
-          <Alert severity="error">{errorMessage}</Alert>
-        )} */}
+			{errorMessage !== null && (
+          <Alert severity="error">Please fill out all fields before submitting</Alert>
+        )}
 		</Container>
 		</ThemeProvider >
+		</>
 	);
 };
 
