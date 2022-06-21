@@ -38,7 +38,7 @@ const MyEvents = () => {
 		)
 			.then((res) => res.json())
 			.then((json) => setEventId(json.response));
-		//window.location.reload()
+			setTimeout(() => window.location.reload(), 500);
 	};
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
