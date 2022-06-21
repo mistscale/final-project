@@ -75,7 +75,6 @@ const NewEventForm = () => {
 	};
 
 	return (
-<<<<<<< HEAD
 		<ThemeProvider theme={theme}>
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
@@ -177,69 +176,6 @@ const NewEventForm = () => {
         )} */}
 		</Container>
 		</ThemeProvider >
-=======
-		<>
-			<Navbar />
-			<section>
-				<h1>Create Event</h1>
-				<form onSubmit={onFormSubmit}>
-					<label>
-						Event title
-						<input
-							name='title'
-							type='text'
-							value={title}
-							required
-							onChange={(e) => setTitle(e.target.value)}
-						/>
-					</label>
-					<label>
-						Location
-						<input
-							name='location'
-							type='text'
-							value={location}
-							required
-							onChange={(e) => setLocation(e.target.value)}
-						/>
-					</label>
-					<label>
-						Date
-						<input
-							name='date'
-							type='datetime-local'
-							value={date}
-							required
-							onChange={(e) => setDate(e.target.value)}
-						/>
-					</label>
-					<label>
-						Category
-						<select
-							value={category}
-							onChange={(e) => setCategory(e.target.value)}
-						>
-							<option value='N/A'></option>
-							<option value="Kid's birthday party">Kid's birthday party</option>
-							<option value='After work'>After work</option>
-							<option value='Party'>Party</option>
-						</select>
-					</label>
-					<label>
-						Details
-						<input
-							name='details'
-							type='text'
-							value={details}
-							required
-							onChange={(e) => setDetails(e.target.value)}
-						/>
-					</label>
-					<button type='submit'>Submit event</button>
-				</form>
-			</section>
-		</>
->>>>>>> myevents
 	);
 };
 
