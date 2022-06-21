@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import format from 'date-fns/format';
 //import { EVENT_URL } from 'utils/urls';
 import image from '../images/illustration.jpg';
 import user from 'reducers/user';
@@ -67,7 +68,11 @@ const MyEvents = () => {
 								{item.category}
 							</Typography>
 							<Typography variant='body1' gutterBottom>
-								<Bold>When:</Bold> {item.date}
+								<Bold>When:</Bold>{' '}
+								{format(new Date(item.date), 'eeee e MMMM yyyy')}
+							</Typography>
+							<Typography variant='body1' gutterBottom>
+								<Bold>Time:</Bold> {format(new Date(item.date), 'HH:mm')}
 							</Typography>
 							<Typography variant='body1' gutterBottom>
 								<Bold>Where:</Bold> {item.location}
