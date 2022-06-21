@@ -50,7 +50,7 @@ const MyEvents = () => {
 		<>
 			<EventWrapper>
 				{events.map((item) => (
-					<Card sx={{ maxWidth: 345 }} key={item._id}>
+					<Card sx={{ maxWidth: 400 }} key={item._id}>
 						<CardMedia
 							component='img'
 							height='140'
@@ -61,17 +61,17 @@ const MyEvents = () => {
 							<Typography gutterBottom variant='h5' component='div'>
 								{item.title}
 							</Typography>
-							<Typography variant='body1' gutterBottom>
+							<Typography variant='subtitle1' gutterBottom>
 								{item.category}
 							</Typography>
 							<Typography variant='body1' gutterBottom>
-								When: {item.date}
+								<Bold>When:</Bold> {item.date}
 							</Typography>
 							<Typography variant='body1' gutterBottom>
-								Where: {item.location}
+								<Bold>Where:</Bold> {item.location}
 							</Typography>
 							<Typography variant='body1' gutterBottom>
-								Details: {item.details}
+								<Bold>Details:</Bold> {item.details}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -91,9 +91,20 @@ const MyEvents = () => {
 
 const EventWrapper = styled.div`
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: 1fr;
+	justify-content: center;
 	gap: 40px;
 	margin: 50px;
+	@media (min-width: 667px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media (min-width: 1024px) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+`;
+
+const Bold = styled.span`
+	font-weight: 500;
 `;
 
 export default MyEvents;
