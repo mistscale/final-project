@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import swal from 'sweetalert';
 
+
 const MyEvents = () => {
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const userId = useSelector((store) => store.user.userId);
@@ -102,7 +103,7 @@ const MyEvents = () => {
 								Details: {item.details}
 							</Typography>
 
-							<button
+							<Button variant="contained"
 								type='button'
 								onClick={() => {
 									setEventId(item._id)
@@ -122,8 +123,7 @@ const MyEvents = () => {
 										});;
 								}
 								}
-							>
-								Delete</button>
+								>Delete</Button>
 
 						</CardContent>
 					</Card>
