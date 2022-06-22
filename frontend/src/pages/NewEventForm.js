@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import Navbar from 'components/Navbar';
+import styled from 'styled-components';
 
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
@@ -83,7 +84,7 @@ const NewEventForm = () => {
 					<CssBaseline />
 					<Box
 						sx={{
-							marginTop: 9,
+							marginTop: 5,
 							display: 'flex',
 							flexDirection: 'column',
 							alignItems: 'center',
@@ -98,7 +99,7 @@ const NewEventForm = () => {
 							onSubmit={onFormSubmit}
 							sx={{ mt: 3 }}
 						>
-							<FormControl sx={{ mb: 2, width: 400 }}>
+							<FormControl sx={{ mb: 2, width: 1 }}>
 								<InputLabel id='demo-multiple-name-label'>Category</InputLabel>
 								<Select
 									labelId='category-label'
