@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import format from 'date-fns/format';
@@ -7,11 +7,10 @@ import format from 'date-fns/format';
 import image1 from '../images/kidsparty.jpg';
 import image2 from '../images/af.jpg';
 import image3 from '../images/party.jpg';
-import user from 'reducers/user';
+
 import Navbar from 'components/Navbar';
 
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
@@ -40,10 +39,9 @@ const MyEvents = () => {
 		)
 			.then((res) => res.json())
 			.then((json) => setEventId(json.response));
-			setTimeout(() => window.location.reload(), 500);
+		setTimeout(() => window.location.reload(), 500);
 	};
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (!accessToken) {
@@ -67,7 +65,6 @@ const MyEvents = () => {
 			.then((res) => res.json())
 			.then((json) => setEvents(json.response));
 	}, [accessToken]);
-	console.log(events);
 
 	return (
 		<>
@@ -108,7 +105,7 @@ const MyEvents = () => {
 							</Typography>
 							<Typography variant='body1' gutterBottom>
 								<Bold>When:</Bold>{' '}
-								{format(new Date(item.date), 'eeee e MMMM yyyy')}
+								{format(new Date(item.date), 'eeee d MMMM yyyy')}
 							</Typography>
 							<Typography variant='body1' gutterBottom>
 								<Bold>Time:</Bold> {format(new Date(item.date), 'HH:mm')}
@@ -119,7 +116,6 @@ const MyEvents = () => {
 							<Typography variant='body1' gutterBottom>
 								<Bold>Details:</Bold> {item.details}
 							</Typography>
-
 							<Button
 								variant='contained'
 								type='button'
@@ -171,6 +167,6 @@ const Bold = styled.span`
 
 const DeleteButton = styled.button`
 	justify-content: center;
-`
+`;
 
 export default MyEvents;
