@@ -114,6 +114,7 @@ const NewEventForm = () => {
 									<MenuItem value='Kids party'>Kids party</MenuItem>
 									<MenuItem value='After work'>After work</MenuItem>
 									<MenuItem value='Party'>Party</MenuItem>
+									<MenuItem value='Other'>Other</MenuItem>
 								</Select>
 							</FormControl>
 							<Grid container spacing={2}>

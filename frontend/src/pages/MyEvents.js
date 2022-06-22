@@ -7,6 +7,8 @@ import format from 'date-fns/format';
 import image1 from '../images/kidsparty.jpg';
 import image2 from '../images/af.jpg';
 import image3 from '../images/party.jpg';
+import image4 from '../images/other.jpg';
+import image5 from '../images/noevent.jpg'
 
 import Navbar from 'components/Navbar';
 
@@ -23,7 +25,7 @@ const MyEvents = () => {
 
 	const [events, setEvents] = useState([]);
 	const [eventId, setEventId] = useState('');
-	console.log(eventId);
+
 	const handleDeleteClick = (eventId) => {
 		const options = {
 			method: 'DELETE',
@@ -49,6 +51,7 @@ const MyEvents = () => {
 		}
 	}, [accessToken, navigate]);
 
+
 	useEffect(() => {
 		const options = {
 			method: 'GET',
@@ -66,84 +69,113 @@ const MyEvents = () => {
 			.then((json) => setEvents(json.response));
 	}, [accessToken]);
 
-	return (
-		<>
-			<Navbar />
-			<EventWrapper>
-				{events.map((item) => (
-					<Card sx={{ maxWidth: 345 }} key={item._id}>
-						{item.category === 'Kids party' && (
-							<CardMedia
-								component='img'
-								height='140'
-								src={image1}
-								alt='kids party image'
-							/>
-						)}
-						{item.category === 'After work' && (
-							<CardMedia
-								component='img'
-								height='140'
-								src={image2}
-								alt='after work image'
-							/>
-						)}
-						{item.category === 'Party' && (
-							<CardMedia
-								component='img'
-								height='140'
-								src={image3}
-								alt='party image'
-							/>
-						)}
-						<CardContent>
-							<Typography gutterBottom variant='h5' component='div'>
-								{item.title}
-							</Typography>
-							<Typography variant='subtitle1' gutterBottom>
-								{item.category}
-							</Typography>
-							<Typography variant='body1' gutterBottom>
-								<Bold>When:</Bold>{' '}
-								{format(new Date(item.date), 'eeee d MMMM yyyy')}
-							</Typography>
-							<Typography variant='body1' gutterBottom>
-								<Bold>Time:</Bold> {format(new Date(item.date), 'HH:mm')}
-							</Typography>
-							<Typography variant='body1' gutterBottom>
-								<Bold>Where:</Bold> {item.location}
-							</Typography>
-							<Typography variant='body1' gutterBottom>
-								<Bold>Details:</Bold> {item.details}
-							</Typography>
-							<Button
-								variant='contained'
-								type='button'
-								onClick={() => {
-									setEventId(item._id);
-									swal({
-										title: 'Are you sure?',
-										text: 'Once deleted, you will not be able to recover this event!',
-										icon: 'warning',
-										buttons: true,
-										dangerMode: true,
-									}).then((willDelete) => {
-										if (willDelete) {
-											handleDeleteClick(item._id);
-										} else {
-											setEventId('');
-										}
-									});
-								}}
-							>
-								Delete
-							</Button>
-						</CardContent>
-					</Card>
-				))}
-			</EventWrapper>
-		</>
-	);
+
+
+
+	if (!events.length) {
+		return (
+			<>
+				<Navbar />
+				<NoEventWrapper>
+                    <img src={image5} className="image" alt='image' />
+				<Typography variant='h6' gutterBottom>
+					Click create new event to get the party started
+					</Typography>
+				</NoEventWrapper>
+
+			</>
+		)
+	}
+
+	if (events.length) {
+		return (
+			<>
+				<Navbar />
+				<EventWrapper>
+
+					{events.map((item) => (
+						<Card sx={{ maxWidth: 345 }} key={item._id}>
+							{item.category === 'Kids party' && (
+								<CardMedia
+									component='img'
+									height='140'
+									src={image1}
+									alt='kids party image'
+								/>
+							)}
+							{item.category === 'After work' && (
+								<CardMedia
+									component='img'
+									height='140'
+									src={image2}
+									alt='after work image'
+								/>
+							)}
+							{item.category === 'Party' && (
+								<CardMedia
+									component='img'
+									height='140'
+									src={image3}
+									alt='party image'
+								/>
+							)}
+							{item.category === 'Other' && (
+								<CardMedia
+									component='img'
+									height='140'
+									src={image4}
+									alt='other category image'
+								/>
+							)}
+							<CardContent>
+								<Typography gutterBottom variant='h5' component='div'>
+									{item.title}
+								</Typography>
+								<Typography variant='subtitle1' gutterBottom>
+									{item.category}
+								</Typography>
+								<Typography variant='body1' gutterBottom>
+									<Bold>When:</Bold>{' '}
+									{format(new Date(item.date), 'eeee d MMMM yyyy')}
+								</Typography>
+								<Typography variant='body1' gutterBottom>
+									<Bold>Time:</Bold> {format(new Date(item.date), 'HH:mm')}
+								</Typography>
+								<Typography variant='body1' gutterBottom>
+									<Bold>Where:</Bold> {item.location}
+								</Typography>
+								<Typography variant='body1' gutterBottom>
+									<Bold>Details:</Bold> {item.details}
+								</Typography>
+								<Button
+									variant='contained'
+									type='button'
+									onClick={() => {
+										setEventId(item._id);
+										swal({
+											title: 'Are you sure?',
+											text: 'Once deleted, you will not be able to recover this event!',
+											icon: 'warning',
+											buttons: true,
+											dangerMode: true,
+										}).then((willDelete) => {
+											if (willDelete) {
+												handleDeleteClick(item._id);
+											} else {
+												setEventId('');
+											}
+										});
+									}}
+								>
+									Delete
+								</Button>
+							</CardContent>
+						</Card>
+					))}
+				</EventWrapper>
+			</>
+		);
+	};
 };
 
 const EventWrapper = styled.div`
@@ -168,5 +200,15 @@ const Bold = styled.span`
 const DeleteButton = styled.button`
 	justify-content: center;
 `;
+
+const NoEventWrapper = styled.div`
+	width: 80%;
+	max-width: 600px;
+	margin: auto;
+	background-color: #fff;
+	text-align: center;
+	margin: 50px auto;
+`;
+
 
 export default MyEvents;
