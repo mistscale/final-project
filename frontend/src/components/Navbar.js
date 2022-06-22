@@ -41,7 +41,7 @@ const NavLink = styled(Link)`
 	align-items: center;
 	text-decoration: none;
 	text-transform: uppercase;
-	padding: 0 20px;
+	padding: 5px 20px;
 	cursor: pointer;
 	&.active {
 		background-color: #ed7e2a;
