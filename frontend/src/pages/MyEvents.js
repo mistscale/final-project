@@ -23,7 +23,7 @@ const MyEvents = () => {
 
 	const [events, setEvents] = useState([]);
 	const [eventId, setEventId] = useState('');
-	console.log(eventId);
+	
 	const handleDeleteClick = (eventId) => {
 		const options = {
 			method: 'DELETE',
