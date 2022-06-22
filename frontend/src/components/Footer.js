@@ -1,24 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import Box from '@mui/material/Box';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import Typography from '@mui/material/Typography';
 
 const Footer = () => {
 	return (
-		<>
-			<FooterContainer>
-				<p>EventApp - Final Project Technigo </p>
-			</FooterContainer>
-		</>
+		<Box sx={{ width: '100%' }}>
+			<Typography variant='body2' align='center'>
+				EventApp - Final Project Technigo
+			</Typography>
+		</Box>
 	);
 };
-
-const FooterContainer = styled.div`
-	background: #eee;
-	color: #888;
-	height: 50px;
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-	text-align: center;
-`;
 
 export default Footer;
