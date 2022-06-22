@@ -116,28 +116,30 @@ const MyEvents = () => {
 							<Typography variant='body1' gutterBottom>
 								<Bold>Details:</Bold> {item.details}
 							</Typography>
-							<Button
-								variant='contained'
-								type='button'
-								onClick={() => {
-									setEventId(item._id);
-									swal({
-										title: 'Are you sure?',
-										text: 'Once deleted, you will not be able to recover this event!',
-										icon: 'warning',
-										buttons: true,
-										dangerMode: true,
-									}).then((willDelete) => {
-										if (willDelete) {
-											handleDeleteClick(item._id);
-										} else {
-											setEventId('');
-										}
-									});
-								}}
-							>
-								Delete
-							</Button>
+							<DeleteButton>
+								<Button
+									variant='text'
+									type='button'
+									onClick={() => {
+										setEventId(item._id);
+										swal({
+											title: 'Are you sure?',
+											text: 'Once deleted, you will not be able to recover this event!',
+											icon: 'warning',
+											buttons: true,
+											dangerMode: true,
+										}).then((willDelete) => {
+											if (willDelete) {
+												handleDeleteClick(item._id);
+											} else {
+												setEventId('');
+											}
+										});
+									}}
+								>
+									Delete
+								</Button>
+							</DeleteButton>
 						</CardContent>
 					</Card>
 				))}
@@ -165,8 +167,10 @@ const Bold = styled.span`
 	font-weight: 500;
 `;
 
-const DeleteButton = styled.button`
-	justify-content: center;
+const DeleteButton = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: -10px;
 `;
 
 export default MyEvents;
