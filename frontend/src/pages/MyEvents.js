@@ -77,7 +77,7 @@ const MyEvents = () => {
 			<>
 				<Navbar />
 				<NoEventWrapper>
-                    <img src={image5} className="image" alt='image' />
+                    <img src={image5} className="image" alt='image' width='100%' />
 				<Typography variant='h6' gutterBottom>
 					Click create new event to get the party started
 					</Typography>
