@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 const Footer = () => {
 	return (
 		<Box
-			sx={{ width: '100%', position: 'absolute', bottom: 15, color: '#999' }}
+			sx={{ width: '100%', position: 'relative', bottom: 15, color: '#999' }}
 		>
 			<Typography variant='body2' align='center'>
 				EventApp {new Date().getFullYear()} - Final Project Technigo
