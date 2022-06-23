@@ -41,5 +41,5 @@ export const App = () => {
 };
 
 const AppContainer = styled.div`
-	min-height: 100vh;
+	min-height: 95vh;
 `;
