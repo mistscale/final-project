@@ -8,7 +8,7 @@ import image1 from '../images/kidsparty.jpg';
 import image2 from '../images/af.jpg';
 import image3 from '../images/party.jpg';
 import image4 from '../images/other.jpg';
-import image5 from '../images/noevent.jpg'
+import image5 from '../images/noevent.jpg';
 
 import Navbar from 'components/Navbar';
 
@@ -50,7 +50,6 @@ const MyEvents = () => {
 		}
 	}, [accessToken, navigate]);
 
-
 	useEffect(() => {
 		const options = {
 			method: 'GET',
@@ -68,22 +67,18 @@ const MyEvents = () => {
 			.then((json) => setEvents(json.response));
 	}, [accessToken]);
 
-
-
-
 	if (!events.length) {
 		return (
 			<>
 				<Navbar />
 				<NoEventWrapper>
-                    <img src={image5} className="image" alt='image' width='100%' />
-				<Typography variant='h6' gutterBottom>
-					Click create new event to get the party started
+					<img src={image5} className='image' alt='image' width='100%' />
+					<Typography variant='h6' gutterBottom>
+						Click create new event to get the party started
 					</Typography>
 				</NoEventWrapper>
-
 			</>
-		)
+		);
 	}
 
 	if (events.length) {
@@ -91,7 +86,6 @@ const MyEvents = () => {
 			<>
 				<Navbar />
 				<EventWrapper>
-
 					{events.map((item) => (
 						<Card sx={{ maxWidth: 345 }} key={item._id}>
 							{item.category === 'Kids party' && (
@@ -146,35 +140,37 @@ const MyEvents = () => {
 								<Typography variant='body1' gutterBottom>
 									<Bold>Details:</Bold> {item.details}
 								</Typography>
-								<Button
-									variant='contained'
-									type='button'
-									onClick={() => {
-										setEventId(item._id);
-										swal({
-											title: 'Are you sure?',
-											text: 'Once deleted, you will not be able to recover this event!',
-											icon: 'warning',
-											buttons: true,
-											dangerMode: true,
-										}).then((willDelete) => {
-											if (willDelete) {
-												handleDeleteClick(item._id);
-											} else {
-												setEventId('');
-											}
-										});
-									}}
-								>
-									Delete
-								</Button>
+								<DeleteButton>
+									<Button
+										variant='text'
+										type='button'
+										onClick={() => {
+											setEventId(item._id);
+											swal({
+												title: 'Are you sure?',
+												text: 'Once deleted, you will not be able to recover this event!',
+												icon: 'warning',
+												buttons: true,
+												dangerMode: true,
+											}).then((willDelete) => {
+												if (willDelete) {
+													handleDeleteClick(item._id);
+												} else {
+													setEventId('');
+												}
+											});
+										}}
+									>
+										Delete
+									</Button>
+								</DeleteButton>
 							</CardContent>
 						</Card>
 					))}
 				</EventWrapper>
 			</>
 		);
-	};
+	}
 };
 
 const EventWrapper = styled.div`
@@ -210,6 +206,5 @@ const NoEventWrapper = styled.div`
 	text-align: center;
 	margin: 50px auto;
 `;
-
 
 export default MyEvents;
