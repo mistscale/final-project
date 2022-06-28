@@ -1,13 +1,24 @@
-# Project Auth API
+# Final Project - EventApp
+This is our solution of the final project of the Technigo Bootcamp. For the final project we did a fullstack web-application for personal event planning. Features includes: create user profile/log in to user profile, create an event, see all user events on profile, delete an event, log out.
 
-Replace this readme with your own information about your project.
+## Tech
+### Backend
+- Node.js
+- Express
+- MongoDB
+- Mongoose
 
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+### Frontend
+- React
+- Redux
+- JSX
+- Styled Components
+- Material UI
 
-## The problem
-
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+## Project members
+Lisen Lundgren, Tomoyo Alvåg, Nabeel Mansour
 
 ## View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+Frontend: https://final-project-eventapp.netlify.app/ <br>
+Backend: https://final-project-eventapp.herokuapp.com/
